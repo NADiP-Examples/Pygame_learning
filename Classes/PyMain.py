@@ -26,7 +26,10 @@ class PyMain:
     def add_none_render_object(self, obj):
         self.none_render_list.append(obj)
 
-    def MainLoop(self):
+    def addEventListener(self, obj, event_type):
+        pass
+
+    def MainLoop(self, FPS = FPS):
         """This is the Main Loop of the Game"""
         clock = pygame.time.Clock()
         while True:
