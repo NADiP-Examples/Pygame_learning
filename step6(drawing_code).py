@@ -1,46 +1,47 @@
 # -*- coding: utf-8 -*-
 # Рисуем на экране кодом. Документация тут: http://www.pygame.org/docs/ref/draw.html
-import pygame, sys
+import sys
+import pygame
+
 
 def draw(surf):
     """
     Рисуем на поверхности с помощью методов/функция pyGame
     """
-    pygame.draw.circle(surf,(200,0,0), (20,20),10) #Рисуем круг(цвет, координаты центра, радиус).
-    #Обратите внимание! Мы рисуем на переданной поверхности surf, относительно её левого верхнего угла
+    pygame.draw.circle(surf, (200, 0, 0), (20, 20), 10)  # Рисуем круг(цвет, координаты центра, радиус).
+    # Обратите внимание! Мы рисуем на переданной поверхности surf, относительно её левого верхнего угла
 
-    #Рисуем синие линии. Последним аргументом передаем список пар координат точек
-    pygame.draw.lines(surf, (0,0,200),False, [(20,20),(30,30),(40,30),(40,20)])
+    # Рисуем синие линии. Последним аргументом передаем список пар координат точек
+    pygame.draw.lines(surf, (0, 0, 200), False, [(20, 20), (30, 30), (40, 30), (40, 20)])
 
-    #Рисуем зеленую дугу. Подробнее об аргументах смотрите в документации pyGame
-    pygame.draw.arc(surf, (0,250,0),(40,40,130,50),0,3,2)
+    # Рисуем зеленую дугу. Подробнее об аргументах смотрите в документации pyGame
+    pygame.draw.arc(surf, (0, 250, 0), (40, 40, 130, 50), 0, 3, 2)
 
 
-#глобальные переменные (Global Variables)
+# глобальные переменные (Global Variables)
 FPS = 40
-BACKGROUND_COLOR = (120,50,120) #Цвет фона
-RES_X, RES_Y = 400,400 #размеры окна приложения
+BACKGROUND_COLOR = (120, 50, 120)  # Цвет фона
+RES_X, RES_Y = 400, 400  # размеры окна приложения
 
-pygame.init() #инициализация
-display = pygame.display.set_mode((RES_X,RES_Y)) #создание окна
-screen = pygame.display.get_surface() #получаем поверхность для рисования
+pygame.init()  # инициализация
+display = pygame.display.set_mode((RES_X, RES_Y))  # создание окна
+screen = pygame.display.get_surface()  # получаем поверхность для рисования
 
-drawing_surf = pygame.Surface((200,200)) #Создаем пустую поверхность (на ней и будем рисовать)
-#drawing_surf = pygame.Surface((200,200), pygame.SRCALPHA) #Так можно создать поверхность с прозрачным фоном
+drawing_surf = pygame.Surface((200, 200))  # Создаем пустую поверхность (на ней и будем рисовать)
+# drawing_surf = pygame.Surface((200,200), pygame.SRCALPHA) #Так можно создать поверхность с прозрачным фоном
 
 draw(drawing_surf)
-clock = pygame.time.Clock() #Создаем таймер для контроля фпс
+clock = pygame.time.Clock()  # Создаем таймер для контроля фпс
 
-while True: #главный цикл программы
-    for e in pygame.event.get(): #цикл обработки очереди событий окна
+while True:  # главный цикл программы
+    for e in pygame.event.get():  # цикл обработки очереди событий окна
         if e.type == pygame.QUIT:
-            sys.exit() #Закрытие окна программы
+            sys.exit()  # Закрытие окна программы
 
-    dt = clock.tick(FPS)            #Устанавливаем FPS
-    screen.fill(BACKGROUND_COLOR)   #Очищаем экран
-    screen.blit(drawing_surf, (0,0))
-    pygame.display.flip()           #отображаем на мониторе все, что нарисовали на экране
-
+    dt = clock.tick(FPS)  # Устанавливаем FPS
+    screen.fill(BACKGROUND_COLOR)  # Очищаем экран
+    screen.blit(drawing_surf, (0, 0))
+    pygame.display.flip()  # отображаем на мониторе все, что нарисовали на экране
 
 """
 Полный список всех фигур, которые можно рисовать(скопировано из документации):
