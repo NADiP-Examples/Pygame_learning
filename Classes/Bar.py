@@ -1,20 +1,25 @@
-import pygame,os, sys
-from Utilities.loads import load_image
+import pygame
 from Classes.PyMain import PyMain
 
 CLICK = pygame.USEREVENT + 1
 DBLCLICK = pygame.USEREVENT + 2
-DBLC_TIME = 500 #максимальный промежуток между кликами - двойной клик
+DBLC_TIME = 500  # максимальный промежуток между кликами - двойной клик
+
+
 class Bar:
-    def __init__(self, pos = (0,0), size = (20,20), color = (100,100,100)):
+    """
+    Демо-Класс прямоугольника
+    Можно перемещать и растягивать с помощью мыши
+    """
+    def __init__(self, pos=(0, 0), size=(20, 20), color=(100, 100, 100)):
         self.image = None
         self.color = color
         self.rect = pygame.Rect(pos, size)
         self.draw()
         self.rect.move_ip(pos)
-        self.drag = False # True - Объект захвачен мышью и будет перемещаться, False - не захвачен
-        self.resizable = False # True - при перемещении мыши, объект будет менять свой размер
-        self.last_mouse_event = None # Последее событие от мыши полученное объектом
+        self.drag = False  # True - Объект захвачен мышью и будет перемещаться, False - не захвачен
+        self.resizable = False  # True - при перемещении мыши, объект будет менять свой размер
+        self.last_mouse_event = None  # Последее событие от мыши полученное объектом
         self.prev_click_time = None
 
     def draw(self):
@@ -23,10 +28,10 @@ class Bar:
         Рисуем элементы нашего объекта
         """
         self.image = pygame.Surface(self.rect.size)
-        pygame.draw.rect(self.image, self.color, ((0,0), self.rect.size))
-        w,h = 10,10 # resize_rect ширина и высота
-        self.resize_rect = pygame.Rect(self.rect.w-w,self.rect.h -h,w,h)
-        pygame.draw.rect(self.image, (0,0,200), self.resize_rect)
+        pygame.draw.rect(self.image, self.color, ((0, 0), self.rect.size))
+        w, h = 10, 10  # resize_rect ширина и высота
+        self.resize_rect = pygame.Rect(self.rect.w - w, self.rect.h - h, w, h)
+        pygame.draw.rect(self.image, (0, 0, 200), self.resize_rect)
 
     def resize(self, rel):
         """
@@ -34,7 +39,7 @@ class Bar:
         """
         self.rect.width += rel[0]
         self.rect.height += rel[1]
-        #Не даем уменьшить размер меньше области "ресайза"
+        # Не даем уменьшить размер меньше области "ресайза"
         if self.rect.w < self.resize_rect.w:
             self.rect.w = self.resize_rect.w
             self.resizable = False
@@ -76,7 +81,7 @@ class Bar:
         elif event.type == DBLCLICK:
             if event.target == self:
                 # print("DBL CLICK")
-                self.resize_ip((40,40))
+                self.resize_ip((40, 40))
 
         self.custom_events(event)
 
@@ -90,7 +95,7 @@ class Bar:
                 if not self.prev_click_time:
                     self.prev_click_time = pygame.time.get_ticks()
                 elif pygame.time.get_ticks() - self.prev_click_time < DBLC_TIME:
-                    dbclickevent = pygame.event.Event(DBLCLICK, pos=event.pos, target = self)
+                    dbclickevent = pygame.event.Event(DBLCLICK, pos=event.pos, target=self)
                     pygame.event.post(dbclickevent)
                     self.prev_click_time = None
                 else:
@@ -100,7 +105,7 @@ class Bar:
         if event.type == pygame.MOUSEBUTTONDOWN or event.type == pygame.MOUSEBUTTONUP:
             if self.rect.collidepoint(event.pos):
                 if self.last_mouse_event == pygame.MOUSEBUTTONDOWN and event.type == pygame.MOUSEBUTTONUP:
-                    clickevent = pygame.event.Event(CLICK, pos=event.pos, target = self)
+                    clickevent = pygame.event.Event(CLICK, pos=event.pos, target=self)
                     pygame.event.post(clickevent)
             self.last_mouse_event = event.type
         elif event.type == pygame.MOUSEMOTION:
@@ -120,8 +125,9 @@ class Bar:
         """
         screen.blit(self.image, self.rect)
 
+
 if __name__ == "__main__":
     main = PyMain(width=800, height=600)
-    main.add_render_object(Bar(pos=(50,50), size=(50,50)))
-    main.add_render_object(Bar(pos=(120,150), size=(60,60)))
+    main.add_render_object(Bar(pos=(50, 50), size=(50, 50)))
+    main.add_render_object(Bar(pos=(120, 150), size=(60, 60)))
     main.MainLoop(FPS=120)

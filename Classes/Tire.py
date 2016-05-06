@@ -7,9 +7,10 @@ from pygame.locals import *
 from Utilities.loads import load_image
 from  Classes.PyMain import PyMain
 
+
 class Tire:
     def __init__(self, pos):
-        self.image = load_image('584529.png', path='Images', alpha_cannel=True)
+        self.image = load_image('584529.png', path='../Images', alpha_channel=True)
         self.rect = self.image.get_rect()
         self.rect.center = pos
 
