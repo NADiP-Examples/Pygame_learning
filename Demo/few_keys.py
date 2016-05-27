@@ -14,7 +14,7 @@ class Keys:
         #  Каждый бит после 0b соответствует своей клавише
         #  Например, так выглядит маска для нажатых клавиш "влево-вверх": ob1010
 
-    def event(self, event):
+    def events(self, event):
         if event.type == KEYUP or event.type == KEYDOWN:
             self.change_mask(event)
             print(event.key)

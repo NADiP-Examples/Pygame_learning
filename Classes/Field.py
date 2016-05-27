@@ -5,7 +5,7 @@ class Field: #Поле, на котором все происходит
         self.width = width
         self.height = height
 
-    def event(self, event):
+    def events(self, event):
         pass
 
     def update(self, screen):

@@ -30,7 +30,7 @@ class Basic:
         elif self.status == MOVE_RIGHT:
             self.pos[0] += self.speed
 
-    def event(self, event):
+    def events(self, event):
         """
         Обрабатываем события
         """

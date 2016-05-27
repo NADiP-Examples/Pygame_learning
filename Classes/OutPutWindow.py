@@ -26,7 +26,7 @@ class OutPutWindow:
     def update(self, dt):
         pass
 
-    def event(self, event):
+    def events(self, event):
         pass
 
     def render(self, screen):

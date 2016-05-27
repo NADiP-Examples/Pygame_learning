@@ -56,7 +56,7 @@ class ScrollBar:  # ползунок.
         self.rect.x = self.x_scroll
         self.num_scroll()
 
-    def event(self, event):
+    def events(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.check_mouse_coords(event.pos):
                 self.MouseOnScroll = True  # ползунок зацеплен

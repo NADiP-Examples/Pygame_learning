@@ -1,16 +1,12 @@
 import sys
-import pygame
-from Classes.Vector import Vector
 
-FPS = 40
-NORMAL = 0
-TURN_LEFT = 1
-TURN_RIGHT = 2
-FORCE = 3
-SLOW = 4
+import pygame
+
+from Utilities import Vector
 
 
 class Ship:
+    # TODO: Переписать класс(устарел)
     def __init__(self, pos):
         self.pos = Vector(pos)
         self.image = pygame.Surface((50, 50))
@@ -67,6 +63,12 @@ class Ship:
 
 
 if __name__ == "__main__":
+    FPS = 40
+    NORMAL = 0
+    TURN_LEFT = 1
+    TURN_RIGHT = 2
+    FORCE = 3
+    SLOW = 4
 
     pygame.init()
     pygame.display.set_mode((800, 600))

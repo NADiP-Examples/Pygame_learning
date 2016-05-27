@@ -1,8 +1,11 @@
-import pygame, math
+import math
+
+import pygame
 from pygame.locals import *
-from Classes.Vector import Vector
+
 from Classes.OutPutWindow import OutPutWindow
-from Utilities import load_image
+from Utilities import load_image, Vector
+
 #statuses
 STOP = 0
 MOVE = 1
@@ -23,7 +26,7 @@ class Game_Object:
         self.status = STOP
         self.angle_speed = 40      #Угловая скорость, градусов/сек
 
-    def event(self, event):
+    def events(self, event):
         """
         Обработка событий объектом
         """
@@ -82,7 +85,7 @@ class Game_Object:
 class Game_Object_control(Game_Object):
     #def __init__(self):
     #    pass
-    def event(self, event):
+    def events(self, event):
         '''
         обработка событий
         '''
@@ -164,7 +167,7 @@ class Game_Object_control(Game_Object):
         if self.keys_state & mask_fire == mask_fire:
             self.press_button_fire = True
 
-    def event(self, event):
+    def events(self, event):
         '''
         обработка событий
         '''

@@ -58,7 +58,7 @@ class Bar:
         """
         return coords[0] - self.rect.x, coords[1] - self.rect.y
 
-    def event(self, event):
+    def events(self, event):
         """
         Обрабатываем события
         """

@@ -32,27 +32,24 @@ class PyMain:
     def addEventListener(self, obj, event_type):
         pass
 
-    def MainLoop(self, FPS=FPS):
+    def render(self):
+        for render_obj in self.render_list:
+                render_obj.render(self.screen)
+
+    def mainloop(self, FPS=FPS):
         """This is the Main Loop of the Game"""
         clock = pygame.time.Clock()
         while True:
             for event in pygame.event.get():
                 for obj in self.render_list + self.none_render_list:
-                    obj.event(event)
+                    obj.events(event)
                 if event.type == pygame.QUIT:
                     sys.exit()
             dt = clock.tick(FPS)
             self.screen.fill((0, 0, 0))
-            for render_obj in self.render_list:
-                render_obj.render(self.screen)
-                render_obj.update(dt)
+            self.render()
 
-            for render_obj in self.none_render_list:
+            for render_obj in self.none_render_list + self.render_list:
                 render_obj.update(dt)
 
             pygame.display.flip()
-
-
-            # if __name__ == "__main__":
-            #    mainWindow = PyManMain(RES_X,RES_Y)
-            #    mainWindow.MainLoop()

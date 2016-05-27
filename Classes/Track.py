@@ -1,5 +1,10 @@
-import math, pygame
-from Classes.Point import Point
+import math
+
+import pygame
+
+from Utilities import Point
+
+
 class Create_Track:
     """
     Класс позволяющий создавать трассу
@@ -8,7 +13,7 @@ class Create_Track:
         self.click_coords = []
         self.points = []
 
-    def event(self, event):
+    def events(self, event):
         #print("event")
         if event.type == pygame.MOUSEBUTTONUP:
             #print("mouse B D")

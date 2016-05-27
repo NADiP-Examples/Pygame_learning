@@ -36,7 +36,7 @@ class Output_window(pygame.sprite.Sprite):
         self.rect.y = self.y
         self.drag = 0 # 0-drop 1-drag
 
-    def event(self,event):
+    def events(self,event):
         mouseXY = pygame.mouse.get_pos()#[0]
         if event.type == 5 or event.type == 6:
             self.clear()

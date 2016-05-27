@@ -32,7 +32,7 @@ class Button:  # основная кнопка
         self.text = Text(text).render()  # Surf текста кнопки
         self.function = function  # функция кнопки
 
-    def event(self, event):
+    def events(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.rect.collidepoint(event.pos):
                 if self.function:
@@ -67,7 +67,7 @@ class OffButton(Button):
         self.images["clicked"] = load_image(image_names[-1], path=path, alpha_channel=True)
         self.clicked = False
 
-    def event(self, event):
+    def events(self, event):
         super().event(event)
         if self.status == 'click':
             self.clicked = True

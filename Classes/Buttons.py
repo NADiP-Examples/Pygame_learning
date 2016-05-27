@@ -60,7 +60,7 @@ class Button:  # основная кнопка
         self.function = function  # функция кнопки
         self.parent = parent  # родитель кнопки, по умолчанию отсутствует
 
-    def event(self, event):
+    def events(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.check_mouse_coords(event.pos):
                 if self.parent:
